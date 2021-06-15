@@ -14,9 +14,9 @@ include {
 inputs = {
 
   namespace = "bibleis"
-  stage     = ""
+  stage     = "prod"
   name      = "web"
 
-  cidr_block = "172.20.0.0/16"
+  cidr_block = "172.21.0.0/16"
 
 }

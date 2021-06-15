@@ -3,8 +3,7 @@
 # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
 # working directory, into a temporary folder, and execute your Terraform commands in that folder.
 terraform {
-  source = "../../../../../../../fcbh-infrastructure-modules//bastion"
-  #source = "git::https://github.com/faithcomesbyhearing/fcbh-infrastructure-modules.git//bastion?ref=master"
+  source = "git::https://github.com/faithcomesbyhearing/fcbh-infrastructure-modules.git//bastion?ref=v0.1.6"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -18,7 +17,7 @@ dependency "vpc" {
 inputs = {
 
   namespace = "bibleis"
-  stage     = ""
+  stage     = "prod"
   name      = "web"
 
   vpc_id    = dependency.vpc.outputs.vpc_id
