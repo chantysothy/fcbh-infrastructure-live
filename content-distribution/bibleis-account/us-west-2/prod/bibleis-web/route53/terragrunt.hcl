@@ -13,16 +13,6 @@ include {
 
 inputs = {
 
-  namespace = "analytics"
-  stage     = "prod"
-  name      = "splunk"
-  parent_zone_record_enabled = false 
-  parent_zone_name = "fcbh.org"
-  zone_name = "splunk.fcbh.org"
-}
-
-inputs = {
-
   namespace = "bibleis"
   stage     = ""
   name      = "web"

@@ -16,5 +16,5 @@ inputs = {
   stage                       = "prod"
   name                        = "certificate"
   domain_name                 = "bible.is"
-  subject_alternative_names   = ["live.bible.is", "staging.bible.is", "dev.bible.is"]
+  subject_alternative_names   = ["live.bible.is", "newdata.bible.is"]
 }
