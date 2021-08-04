@@ -26,18 +26,18 @@ dependency "bastion" {
     security_group_id = ""
   }
 }
-# dependency "route53" {
-#   config_path = "../../route53"
-#   mock_outputs = {
-#     zone_id = ""
-#   }
-# }
-# dependency "certificate" {
-#   config_path = "../../certificate/dev.dbt.io"
-#   mock_outputs = {
-#     arn = ""
-#   }
-# }
+dependency "route53" {
+  config_path = "../bibleis-web-newdata-route53"
+  mock_outputs = {
+    zone_id = ""
+  }
+}
+dependency "certificate" {
+  config_path = "../certificate"
+  mock_outputs = {
+    arn = ""
+  }
+}
 
 inputs = {
   namespace = "bibleis-web"
@@ -53,8 +53,8 @@ inputs = {
   keypair                      = "bibleis-prod"
   description                  = "bibleis web NEWDATA Elastic Beanstalk"
   autoscale_min                = 1
-  # dns_zone_id                  = dependency.route53.outputs.zone_id
-  # loadbalancer_certificate_arn = dependency.certificate.outputs.arn
+  dns_zone_id                  = dependency.route53.outputs.zone_id
+  loadbalancer_certificate_arn = dependency.certificate.outputs.arn
   instance_type                = "t3.small"
 
   environment_description = "DBP Web for Newdata"
@@ -81,7 +81,7 @@ inputs = {
     "BEANSTALK_BUCKET"   = "elasticbeanstalk-us-west-2-529323115138"
     "S3_CONFIG_LOC"      = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-529323115138/bibleis-web-newdata"
     "BASE_API_ROUTE" = "https://dev.dbt.io/api"
-    "NODE_ENV" = "production"
+    "NODE_ENV" = "staging"
     "NPM_USE_PRODUCTION" = "1"
     "npm_config_unsafe_perm" = "1"
   }

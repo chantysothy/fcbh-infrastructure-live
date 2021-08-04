@@ -65,7 +65,7 @@ inputs = {
   healthcheck_url  = "/hello.php"
   application_port = 80
 
-  solution_stack_name = "64bit Amazon Linux 2018.03 v2.9.13 running PHP 7.2"
+  solution_stack_name = "64bit Amazon Linux 2018.03 v2.9.21 running PHP 7.2"
 
   // https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 

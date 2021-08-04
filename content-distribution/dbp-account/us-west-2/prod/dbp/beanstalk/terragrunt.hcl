@@ -80,20 +80,20 @@ inputs = {
   healthcheck_url            = "/status"
   enable_stream_logs         = true
 
-  solution_stack_name        = "64bit Amazon Linux 2018.03 v2.9.13 running PHP 7.2"
+  solution_stack_name        = "64bit Amazon Linux 2018.03 v2.9.21 running PHP 7.2"
 
   env_vars = {
     "BEANSTALK_BUCKET"    = "elasticbeanstalk-us-west-2-596282610570"
     "S3_CONFIG_LOC"      = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-596282610570/dbp"    
     "APP_ENV"            = "prod"
-    "APP_URL"            = "https://b4.dbt.io"
-    "API_URL"            = "https://b4.dbt.io/api"
-    "APP_URL_PODCAST"    = "https://b4.dbt.io"
+    "APP_URL"            = "https://4.dbt.io"
+    "API_URL"            = "https://4.dbt.io/api"
+    "APP_URL_PODCAST"    = "https://4.dbt.io"
     "APP_DEBUG"          = "0"
-    "DBP_HOST"           = "prod-cluster.cluster-ro-cp6dghsmdxd5.us-west-2.rds.amazonaws.com"
-    "DBP_DATABASE"       = "dbp_210117"
+    "DBP_HOST"           = "prod-cluster-restored-june23-cluster.cluster-ro-cp6dghsmdxd5.us-west-2.rds.amazonaws.com"
+    "DBP_DATABASE"       = "dbp_210716"
     "DBP_USERNAME"       = "api_node_dbp"
-    "DBP_USERS_HOST"     = "prod-cluster.cluster-cp6dghsmdxd5.us-west-2.rds.amazonaws.com"
+    "DBP_USERS_HOST"     = "prod-cluster-restored-june23-cluster.cluster-cp6dghsmdxd5.us-west-2.rds.amazonaws.com"
     "DBP_USERS_DATABASE" = "dbp_users"
     "DBP_USERS_USERNAME" = "api_node_dbp"
     "MEMCACHED_HOST"     = dependency.elasticache.outputs.cluster_address

@@ -26,4 +26,5 @@ inputs = {
   vpc_id          = dependency.vpc.outputs.vpc_id
   private_subnets = dependency.vpc.outputs.private_subnet_ids
   allowed_security_groups = [dependency.vpc.outputs.vpc_default_security_group_id]  
+  max_item_size   = 2097152  
 }

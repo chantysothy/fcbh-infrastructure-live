@@ -16,5 +16,5 @@ inputs = {
   stage                       = ""
   name                        = "cert"
   domain_name                 = "dbt.io"
-  subject_alternative_names   = ["4.dbt.io", "b4.dbt.io"]
+  subject_alternative_names   = ["*.dbt.io"]
 }
