@@ -21,17 +21,23 @@ dependency "vpc" {
   }
 }
 
+dependency "rds" {
+  config_path = "../rds"
+  mock_outputs = {
+    endpoint        = ""
+    reader_endpoint = ""
+  }
+}
+
 inputs = {
-  environment = "dev"
+  environment = "newdata"
   vpc_id = dependency.vpc.outputs.vpc_id
   ecs_subnets = dependency.vpc.outputs.public_subnet_ids
   ecs_security_group = dependency.vpc.outputs.vpc_default_security_group_id
   lambda_subnets = dependency.vpc.outputs.private_subnet_ids
   lambda_security_group = dependency.vpc.outputs.vpc_default_security_group_id
-  database_host = "dbp-dev-api.cluster-c43uzts2g90s.us-west-2.rds.amazonaws.com"
-  database_db_name = "dbp_TEST"
-  s3_bucket = "dbp-staging"
-  s3_vid_bucket = "dbp-vid-staging"
-  s3_artifacts_bucket = "dbp-etl-artifacts-dev"
-  assume_role_arn = "arn:aws:iam::869054869504:role/dbp-etl-dev"
+  database_host = dependency.rds.outputs.endpoint
+  acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/6d4e6f6b-85b2-49f6-9064-50b16176e8b5"
+  alias = "etl.dev.dbt.io"
+  assume_role_arn = "arn:aws:iam::869054869504:role/dbp-etl-prod"
 }
