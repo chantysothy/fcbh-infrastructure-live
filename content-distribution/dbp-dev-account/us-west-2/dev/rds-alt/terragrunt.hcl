@@ -39,20 +39,20 @@ dependency "bastion" {
 # aurora mysql engine versions: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.11Updates.html
 inputs = {
   namespace                  = "dbp"
-  stage                      = "dev"
-  name                       = "api"
+  stage                      = "altdev"
+  name                       = "rds"
   vpc_id                     = dependency.vpc.outputs.vpc_id
   subnets                    = dependency.vpc.outputs.private_subnet_ids
   security_groups            = [dependency.vpc.outputs.vpc_default_security_group_id, dependency.bastion.outputs.security_group_id]
   allowed_cidr_blocks        = ["172.20.0.0/16"]
-  instance_type              = "db.r5.large"
-  engine_version             = "5.7.mysql_aurora.2.10.0"
+  instance_type              = "db.t3.medium"
+  engine_version             = "8.0.mysql_aurora.3.01.0"
   cluster_size               = 1
+  cluster_family             = "aurora-mysql8.0"
   db_name                    = "dbp_dev"
-  snapshot_identifier        = "dev-pre-terraform"
-  performance_insights_enabled = false
+  snapshot_identifier        = "migrate-mysql57-to-mysql8"
+  performance_insights_enabled = false  
   autoscaling_enabled        = true
-  autoscaling_target_metrics = "RDSReaderAverageDatabaseConnections"
-  autoscaling_target_value   = 700 # tied to instance_type. db.r5.large max connections is 1000, so scale up before that target is hit. https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Performance.html
-  autoscaling_min_capacity   = 1  # note: this compensates for a bug in the cloudposse module. In addition to read _replica count, add 1 for the writer. Reference: https://github.com/cloudposse/terraform-aws-rds-cluster/issues/63
+  autoscaling_target_metrics = "RDSReaderAverageCPUUtilization"
+  autoscaling_target_value   = 55 
 }

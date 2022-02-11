@@ -29,12 +29,12 @@ dependency "dbp-beanstalk" {
 #   b) create an environment variable of the form TF_VAR_key (example: export TF_VAR_github_oauth_token=1111111111) prior to invoking terraform
 inputs = {
   namespace               = "dbp"
-  stage                   = "dev"
+  stage                   = "devphpupdate"
   name                    = "cicd"
   application_description = "CICD resources for DBP Beanstalk"
-  connection_name         = "dbp"
-  full_repository_id      = "faithcomesbyhearing/dbp"
-  branch                             = "develop"
+  repo_owner                         = "faithcomesbyhearing"
+  repo_name                          = "dbp"
+  branch                             = "php8"
   force_destroy                      = true
   elastic_beanstalk_application_name = dependency.dbp-beanstalk.outputs.elastic_beanstalk_application_name
   elastic_beanstalk_environment_name = dependency.dbp-beanstalk.outputs.elastic_beanstalk_environment_name

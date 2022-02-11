@@ -27,18 +27,18 @@ dependency "bastion" {
   }
 }
 dependency "rds" {
-  config_path = "../../rds"
+  config_path = "../../rds-alt"
   mock_outputs = {
     endpoint        = ""
     reader_endpoint = ""
   }
 }
-dependency "elasticache" {
-  config_path = "../../elasticache"
-  mock_outputs = {
-    cluster_address = ""
-  }
-}
+# dependency "elasticache" {
+#   config_path = "../../elasticache"
+#   mock_outputs = {
+#     cluster_address = ""
+#   }
+# }
 dependency "route53" {
   config_path = "../../route53"
   mock_outputs = {
@@ -55,15 +55,14 @@ dependency "certificate" {
 # to copy an RDS snapshot between accounts: https://aws.amazon.com/premiumsupport/knowledge-center/rds-snapshots-share-account/
 inputs = {
   namespace = "dbp"
-  stage     = "dev"
+  stage     = "altdev"
   name      = "beanstalk"
 
   application_description      = "dbp"
   vpc_id                       = dependency.vpc.outputs.vpc_id
   public_subnets               = dependency.vpc.outputs.public_subnet_ids
   private_subnets              = dependency.vpc.outputs.private_subnet_ids
-  allowed_security_groups      = [dependency.bastion.outputs.security_group_id, dependency.vpc.outputs.vpc_default_security_group_id]
-  additional_security_groups   = [dependency.bastion.outputs.security_group_id, dependency.vpc.outputs.vpc_default_security_group_id]
+  loadbalancer_security_groups      = [dependency.bastion.outputs.security_group_id, dependency.vpc.outputs.vpc_default_security_group_id]
   keypair                      = "dbp-dev"
   description                  = "DBP Elastic Beanstalk"
   autoscale_min                = 1
@@ -71,7 +70,7 @@ inputs = {
   loadbalancer_certificate_arn = dependency.certificate.outputs.arn
   instance_type                = "t3.small"
 
-  environment_description = "DBP Development environment"
+  environment_description = "DBP Development (ALT)"
   version_label           = ""
   force_destroy           = true
   root_volume_size        = 8
@@ -86,18 +85,17 @@ inputs = {
   healthcheck_url  = "/status"
   application_port = 80
 
-  solution_stack_name = "64bit Amazon Linux 2 v3.3.5 running PHP 8.0"
+  solution_stack_name = "64bit Amazon Linux 2 v3.3.10 running PHP 8.0"
   enable_stream_logs  = true
 
   // https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 
   env_vars = {
     "BEANSTALK_BUCKET"   = "elasticbeanstalk-us-west-2-078432969830"
-    "S3_CONFIG_LOC"      = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-078432969830/dbp"
+    "S3_CONFIG_LOC"      = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-078432969830/dbp-alt"
     "APP_ENV"            = "dev"
     "APP_URL"            = "https://dev.dbt.io"
     "API_URL"            = "https://dev.dbt.io/api"
-    "APP_URL_PODCAST"    = "https://dev.dbt.io"
     "APP_DEBUG"          = "1"
     "DBP_HOST"           = dependency.rds.outputs.reader_endpoint
     "DBP_DATABASE"       = "dbp_NEWDATA"
@@ -105,7 +103,7 @@ inputs = {
     "DBP_USERS_HOST"     = dependency.rds.outputs.endpoint
     "DBP_USERS_DATABASE" = "dbp_users"
     "DBP_USERS_USERNAME" = "api_node_dbp"
-    "MEMCACHED_HOST"     = dependency.elasticache.outputs.cluster_address
-    "NEW_RELIC_APP_NAME" = "DBP4 DEV"
+    "MEMCACHED_HOST"     = "dbp-dev-memcached16.ro0irw.cfg.usw2.cache.amazonaws.com"
+    "NEW_RELIC_APP_NAME" = "DBP4 DEV ALT"
   }
 }

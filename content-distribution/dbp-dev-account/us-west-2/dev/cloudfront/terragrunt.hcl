@@ -32,4 +32,5 @@ inputs = {
   cors_allowed_origins     = ["*.dev.dbt.io"]
   viewer_protocol_policy   = "allow-all"
   origin_force_destroy     = false
+  origin_bucket            = "dbp-dev-cloudfront-origin"
 }

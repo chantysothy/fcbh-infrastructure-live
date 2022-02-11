@@ -15,5 +15,6 @@ inputs = {
   namespace                   = "dbp"
   stage                       = "dev"
   name                        = "certificate"
+  zone_id                     = "Z0350484WNCV3TMUZF5Z"
   domain_name                 = "dev.dbt.io"
 }

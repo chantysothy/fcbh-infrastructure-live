@@ -22,7 +22,7 @@ dependency "vpc" {
 
 inputs = {
   namespace       = "dbp"
-  stage           = "dev"
+  stage           = "altdev"
   name            = "memcached1.6"
   vpc_id          = dependency.vpc.outputs.vpc_id
   private_subnets = dependency.vpc.outputs.private_subnet_ids

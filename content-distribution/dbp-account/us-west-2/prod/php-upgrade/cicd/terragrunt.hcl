@@ -13,11 +13,12 @@ include {
 
 dependency "dbp-beanstalk" {
   config_path = "../beanstalk"
-  mock_outputs = {
+    mock_outputs = {
       elastic_beanstalk_application_name = "app"
       elastic_beanstalk_environment_name = "env"
   }  
 }
+
 
 # NOTE: The CodePipeline stage requires access to the GitHub repository containing the Beanstalk configuration. 
 # In addition to the input variables listed below, an additional variable (github_oauth_token) must be provided. 
@@ -28,14 +29,13 @@ dependency "dbp-beanstalk" {
 #   a) add -var="key=value" to the terraform command line
 #   b) create an environment variable of the form TF_VAR_key (example: export TF_VAR_github_oauth_token=1111111111) prior to invoking terraform
 inputs = {
-  namespace               = "dbp"
-  stage                   = "dev"
-  name                    = "cicd"
-  application_description = "CICD resources for DBP Beanstalk"
-  connection_name         = "dbp"
-  full_repository_id      = "faithcomesbyhearing/dbp"
-  branch                             = "develop"
-  force_destroy                      = true
+  namespace                          = "dbp"
+  stage                              = "alt"
+  name                               = "cicd"
+  connection_name                    = "dbp"
+  full_repository_id                  = "faithcomesbyhearing/dbp"
+  branch                             = "master-php8"  
+  application_description            = "CICD resources for DBP Beanstalk"
   elastic_beanstalk_application_name = dependency.dbp-beanstalk.outputs.elastic_beanstalk_application_name
   elastic_beanstalk_environment_name = dependency.dbp-beanstalk.outputs.elastic_beanstalk_environment_name
 }
