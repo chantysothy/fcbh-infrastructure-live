@@ -33,12 +33,12 @@ dependency "rds" {
     reader_endpoint = ""
   }
 }
-# dependency "elasticache" {
-#   config_path = "../../elasticache"
-#   mock_outputs = {
-#     cluster_address = ""
-#   }
-# }
+dependency "elasticache" {
+  config_path = "../../elasticache-alt"
+  mock_outputs = {
+    cluster_address = ""
+  }
+}
 dependency "route53" {
   config_path = "../../route53"
   mock_outputs = {
@@ -67,6 +67,7 @@ inputs = {
   description                  = "DBP Elastic Beanstalk"
   autoscale_min                = 1
   dns_zone_id                  = dependency.route53.outputs.zone_id
+  dns_subdomain                = "altdev"
   loadbalancer_certificate_arn = dependency.certificate.outputs.arn
   instance_type                = "t3.small"
 
@@ -103,7 +104,7 @@ inputs = {
     "DBP_USERS_HOST"     = dependency.rds.outputs.endpoint
     "DBP_USERS_DATABASE" = "dbp_users"
     "DBP_USERS_USERNAME" = "api_node_dbp"
-    "MEMCACHED_HOST"     = "dbp-dev-memcached16.ro0irw.cfg.usw2.cache.amazonaws.com"
+    "MEMCACHED_HOST"     = dependency.elasticache.outputs.cluster_address //"dbp-dev-memcached16.ro0irw.cfg.usw2.cache.amazonaws.com"
     "NEW_RELIC_APP_NAME" = "DBP4 DEV ALT"
   }
 }
