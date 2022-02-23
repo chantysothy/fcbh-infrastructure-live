@@ -37,13 +37,15 @@ dependency "bastion" {
 #
 # Note: db.r3.large or greater is needed to support Performance Insights
 # aurora mysql engine versions: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.11Updates.html
+#
+# security group "sg-0a5c623a606883f6a" is the beanstalk security group. It is not created at the point when RDS is created, so is added after the fact
 inputs = {
   namespace                  = "dbp"
   stage                      = "altdev"
   name                       = "rds"
   vpc_id                     = dependency.vpc.outputs.vpc_id
   subnets                    = dependency.vpc.outputs.private_subnet_ids
-  security_groups            = [dependency.vpc.outputs.vpc_default_security_group_id, dependency.bastion.outputs.security_group_id]
+  security_groups            = [dependency.vpc.outputs.vpc_default_security_group_id, dependency.bastion.outputs.security_group_id, "sg-0a5c623a606883f6a"]
   allowed_cidr_blocks        = ["172.20.0.0/16"]
   instance_type              = "db.t3.medium"
   engine_version             = "8.0.mysql_aurora.3.01.0"
