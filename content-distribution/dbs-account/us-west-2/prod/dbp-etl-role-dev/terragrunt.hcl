@@ -18,11 +18,12 @@ include {
 inputs = {
   environment = "dev"
   s3_buckets = [
-    "dbp-etl-upload-dev-zrg0q2rhv7shv7hr", # dependency.dbp-etl.outputs.ui_upload_bucket,
+    "dbp-etl-upload-dev-ya1mbvdty8tlq15r", # dependency.dbp-etl.outputs.ui_upload_bucket,
     "dbp-etl-artifacts-dev", # dependency.dbp-etl.outputs.ui_artifacts_bucket,
     "dbp-staging",
     "dbp-vid-staging",
     "dbp-etl-mass-batch",
+    "etl-development-input"
   ]
   elastictranscoder_arns = [
     "arn:aws:elastictranscoder:us-west-2:869054869504:pipeline/1538064910359-jfv2ws",

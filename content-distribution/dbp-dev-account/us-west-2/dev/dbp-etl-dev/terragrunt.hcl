@@ -20,7 +20,7 @@ dependency "vpc" {
     vpc_default_security_group_id = ""
   }
 }
-
+# certificate arn:aws:acm:us-east-1:295824083926:certificate/83871135-66ad-4dee-93bb-4d0d216b51f1 is from FCBH Primary / us-east-1, with domain wildcard (*.dbt.io)
 inputs = {
   environment = "dev"
   vpc_id = dependency.vpc.outputs.vpc_id
@@ -29,9 +29,12 @@ inputs = {
   lambda_subnets = dependency.vpc.outputs.private_subnet_ids
   lambda_security_group = dependency.vpc.outputs.vpc_default_security_group_id
   database_host = "dbp-dev-api.cluster-c43uzts2g90s.us-west-2.rds.amazonaws.com"
+  acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/9a8c2110-2289-4863-9400-9e4847953948"  
   database_db_name = "dbp_TEST"
   s3_bucket = "dbp-staging"
   s3_vid_bucket = "dbp-vid-staging"
   s3_artifacts_bucket = "dbp-etl-artifacts-dev"
+  alias = "etldev.dev.dbt.io"  
   assume_role_arn = "arn:aws:iam::869054869504:role/dbp-etl-dev"
+  source_repository_branch = "develop"  
 }

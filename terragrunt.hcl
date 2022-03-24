@@ -40,7 +40,7 @@ generate "provider" {
 provider "aws" {
   region = "${local.aws_region}"
   profile = "${local.aws_profile}"
-    shared_credentials_file = "$HOME/.aws/credentials" 
+  shared_credentials_files = ["$HOME/.aws/credentials"]
   # Only these AWS Account IDs may be operated on by this template
   allowed_account_ids = ["${local.account_id}"]
 }
