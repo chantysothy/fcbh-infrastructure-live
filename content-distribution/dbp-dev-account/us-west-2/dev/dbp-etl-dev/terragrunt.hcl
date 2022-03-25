@@ -38,4 +38,5 @@ inputs = {
   assume_role_arn = "arn:aws:iam::869054869504:role/dbp-etl-dev"
   source_location = "https://github.com/faithcomesbyhearing/dbp-etl.git"  
   source_repository_branch = "develop"  
+  submodule_branch = "develop"
 }
