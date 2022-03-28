@@ -36,7 +36,8 @@ inputs = {
   s3_artifacts_bucket = "dbp-etl-artifacts-dev"
   alias = "etldev.dev.dbt.io"  
   assume_role_arn = "arn:aws:iam::869054869504:role/dbp-etl-dev"
-  source_location = "https://github.com/faithcomesbyhearing/dbp-etl.git"  
-  source_repository_branch = "develop"  
-  submodule_branch = "develop"
+  etl_source_repository = "https://github.com/faithcomesbyhearing/dbp-etl.git"  
+  etl_source_repository_branch = "develop"    
+  etl_web_source_repository = "https://github.com/faithcomesbyhearing/dbp-etl-web.git"  
+  etl_web_source_repository_branch = "develop"  
 }
