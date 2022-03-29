@@ -17,12 +17,16 @@ include {
 
 inputs = {
   environment = "prod"
+  max_session_duration = 43200  
   s3_buckets = [
     "dbp-etl-upload-newdata-fiu49s0cnup1yr0q", # dependency.dbp-etl.outputs.ui_upload_bucket,
     "dbp-etl-artifacts", # dependency.dbp-etl.outputs.ui_artifacts_bucket,
     "dbp-prod",
     "dbp-vid",
   ]
+  s3_readonly_buckets = [ 
+    "dbp-etl-upload-newdata-fiu49s0cnup1yr0q" # not strictly necessary since this role has broader rights already. here for consistency
+  ]  
   elastictranscoder_arns = [
     "arn:aws:elastictranscoder:us-west-2:869054869504:pipeline/1537458645466-6z62tx",
     "arn:aws:elastictranscoder:us-west-2:869054869504:job/*",
