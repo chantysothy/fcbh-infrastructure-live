@@ -22,7 +22,7 @@ dependency "vpc" {
 }
 
 dependency "rds" {
-  config_path = "../rds"
+  config_path = "../rds-alt"
   mock_outputs = {
     endpoint        = ""
     reader_endpoint = ""

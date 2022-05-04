@@ -40,19 +40,19 @@ dependency "bastion" {
 #
 # security group "sg-0a5c623a606883f6a" is the beanstalk security group. It is not created at the point when RDS is created, so is added after the fact
 inputs = {
-  namespace                  = "dbp"
-  stage                      = "altdev"
+  namespace                  = "biblebrain"
+  stage                      = "contentdev"
   name                       = "rds"
   vpc_id                     = dependency.vpc.outputs.vpc_id
   subnets                    = dependency.vpc.outputs.private_subnet_ids
   security_groups            = [dependency.vpc.outputs.vpc_default_security_group_id, dependency.bastion.outputs.security_group_id, "sg-0a5c623a606883f6a"]
   allowed_cidr_blocks        = ["172.20.0.0/16"]
   instance_type              = "db.t3.medium"
-  engine_version             = "8.0.mysql_aurora.3.01.0"
+  engine_version             = "8.0.mysql_aurora.3.02.0"
   cluster_size               = 1
   cluster_family             = "aurora-mysql8.0"
   db_name                    = "dbp_dev"
-  snapshot_identifier        = "migrate-mysql57-to-mysql8"
+  snapshot_identifier        = "pre-upgrade-to-v3"
   performance_insights_enabled = false  
   autoscaling_enabled        = true
   autoscaling_target_metrics = "RDSReaderAverageCPUUtilization"
