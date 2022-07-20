@@ -38,6 +38,7 @@ inputs = {
   lambda_security_group = dependency.vpc.outputs.vpc_default_security_group_id
   database_host = dependency.rds.outputs.endpoint
   database_db_name = "dbp_NEWDATA"
+  database_user = "etl"
   acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/6d4e6f6b-85b2-49f6-9064-50b16176e8b5"
   alias = "etl.dev.dbt.io"
   s3_bucket = "dbp-prod"
