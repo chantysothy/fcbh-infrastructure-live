@@ -33,6 +33,10 @@ locals {
 }
 
 # Generate an AWS provider block
+# 7/20/22 - due to error in biblebrain-downloader-role (AWS provider 3.74),
+# changed shared_credentials_files to shared_credential_file, and changed it from list to string.
+# will this thrash between errors?
+# 7/21/22 - yep, upgrading to AWS provider 4.22 resulted in shared_credential_file being deprecated..
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
