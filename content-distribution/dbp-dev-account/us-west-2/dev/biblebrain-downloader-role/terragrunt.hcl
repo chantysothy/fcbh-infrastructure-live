@@ -11,9 +11,7 @@ include {
   path = find_in_parent_folders()
 }
 
-# dependency "dbp-etl" {
-#   config_path = "../../../../dbp-dev-account/us-west-2/dev/dbp-etl-newdata"
-# }
+
 
 inputs = {
   environment = "dev"
@@ -23,6 +21,6 @@ inputs = {
     "dbp-vid-staging",
   ]
   s3_downloader_bucket = [ 
-    "biblebrain-downloader-dev" 
+    "biblebrain-downloader-content-origin-dev-otc00l0j3b9ggbgc" 
   ]  
 }

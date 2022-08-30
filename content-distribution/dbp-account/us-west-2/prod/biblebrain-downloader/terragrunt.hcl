@@ -15,13 +15,13 @@ include {
 inputs = {
 
   namespace    = "biblebrain"
-  stage        = "dev"
+  stage        = "prod"
   name         = "downloader"
-  downloader_role_arn = "arn:aws:iam::078432969830:role/biblebrain-downloader-dev-hxul4ii4m7svimec"
+  downloader_role_arn = "arn:aws:iam::596282610570:role/biblebrain-downloader-prod-o6wuebweiwbb21mb"
   source_repository = "https://github.com/faithcomesbyhearing/biblebrain-downloader"
-  source_repository_branch = "develop"
-  s3_audio_source_bucket = "dbp-staging"
-  s3_video_source_bucket = "dbp-vid-staging"
-  # s3_downloader_bucket  = "biblebrain-downloader-dev"
-  cdn_signing_key_secret_id = "/dev/biblebrain/cdn/signing_key-otc00l0j3b9ggbgc"
+  source_repository_branch = "main"
+  s3_audio_source_bucket = "dbp-prod"
+  s3_video_source_bucket = "dbp-vid"
+  # s3_downloader_bucket  = "biblebrain-downloader-content"
+  cdn_signing_key_secret_id = "/prod/biblebrain/cdn/signing_key-13soz5r4mytkk"
 }

@@ -16,13 +16,13 @@ include {
 # }
 
 inputs = {
-  environment = "dev"
+  environment = "prod"
   max_session_duration = 43200  
   s3_source_buckets = [
     "dbp-prod",
     "dbp-vid",
   ]
   s3_downloader_bucket = [ 
-    "biblebrain-downloader" 
+    "biblebrain-downloader-content-origin-prod-f47v7xckyka5mznz" 
   ]  
 }
