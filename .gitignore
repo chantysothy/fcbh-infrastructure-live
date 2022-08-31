@@ -12,3 +12,5 @@
 **/.terragrunt-cache/*
 **/.terragrunt-global-cache/*
 fcbh-infrastructure.code-workspace
+
+*.pem
