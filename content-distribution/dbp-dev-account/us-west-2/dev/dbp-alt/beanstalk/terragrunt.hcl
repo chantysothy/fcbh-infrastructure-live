@@ -69,7 +69,7 @@ inputs = {
   dns_zone_id                  = dependency.route53.outputs.zone_id
   dns_subdomain                = "altdev"
   loadbalancer_certificate_arn = dependency.certificate.outputs.arn
-  instance_type                = "t3.small"
+  instance_type                = "t4g.small"
 
   environment_description = "DBP Development (ALT)"
   version_label           = ""
@@ -86,7 +86,7 @@ inputs = {
   healthcheck_url  = "/status"
   application_port = 80
 
-  solution_stack_name = "64bit Amazon Linux 2 v3.3.10 running PHP 8.0"
+  solution_stack_name = "64bit Amazon Linux 2 v3.4.0 running PHP 8.1"
   enable_stream_logs  = true
 
   // https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html

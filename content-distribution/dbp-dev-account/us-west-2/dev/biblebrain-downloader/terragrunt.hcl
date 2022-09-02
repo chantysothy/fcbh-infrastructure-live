@@ -22,6 +22,7 @@ inputs = {
   source_repository_branch = "develop"
   s3_audio_source_bucket = "dbp-staging"
   s3_video_source_bucket = "dbp-vid-staging"
-  # s3_downloader_bucket  = "biblebrain-downloader-dev"
-  cdn_signing_key_secret_id = "/dev/biblebrain/cdn/signing_key-otc00l0j3b9ggbgc"
+  ssm_cloudfront_signing_key_name = "/dev/biblebrain/cdn/signing_key-otc00l0j3b9ggbgc"
+  ssm_biblebrain_dsn_name = "/dev/biblebrain/sql/dsn-otc00l0j3b9ggbgc"
+  #export TF_VAR_ssm_biblebrain_dsn_value = 
 }
