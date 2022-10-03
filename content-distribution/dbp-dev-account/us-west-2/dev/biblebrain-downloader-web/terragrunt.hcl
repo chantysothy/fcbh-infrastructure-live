@@ -20,11 +20,11 @@ dependency "vpc" {
     vpc_default_security_group_id = ""
   }
 }
-# certificate arn:aws:acm:us-east-1:295824083926:certificate/83871135-66ad-4dee-93bb-4d0d216b51f1 is from FCBH Primary / us-east-1, with domain wildcard (*.dbt.io)
+# certificate arn:aws:acm:us-east-1:596282610570:certificate/9ca85cb7-cd09-4996-afc7-b29a4c4bc9f1 is from DBP account / us-east-1, with domain wildcard (*.biblebrain.com)
 inputs = {
   environment = "dev"
-  acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/84f16453-8430-4f58-a5c9-0d5366633c68"  
-  # alias = "linguasource.dev.dbt.io"  
+  acm_certificate_arn = "arn:aws:acm:us-east-1:596282610570:certificate/9ca85cb7-cd09-4996-afc7-b29a4c4bc9f1"  
+  alias = "dev.downloader.biblebrain.com"  
   source_repository = "https://github.com/faithcomesbyhearing/biblebrain-downloader-web.git"  
   source_repository_branch = "develop"
 }

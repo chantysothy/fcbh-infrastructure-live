@@ -24,5 +24,7 @@ inputs = {
   s3_video_source_bucket = "dbp-vid-staging"
   cloudfront_signing_ssm_base = "/dev/biblebrain/cdn/signing_key-otc00l0j3b9ggbgc"
   ssm_biblebrain_dsn_name = "/dev/biblebrain/sql/dsn-otc00l0j3b9ggbgc"
+  # cloudfront_allowed_ip_set =["140.82.163.2/32","136.37.119.235/32"]
+  cloudfront_web_acl = "arn:aws:wafv2:us-east-1:078432969830:global/webacl/biblebrain-download-restrict-ip/b41aab98-4c6e-4e85-8985-bba2bcc83f00"
   #export TF_VAR_ssm_biblebrain_dsn_value = 
 }

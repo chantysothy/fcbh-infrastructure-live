@@ -29,6 +29,9 @@ dependency "rds" {
   }
 }
 
+# certificate arn:aws:acm:us-east-1:078432969830:certificate/93d4eead-a19c-4c67-8d35-6ae13a85d19e is in dbp-dev account / us-east-1, with domain wildcard (*.biblebrain.com)
+# certificate arn:aws:acm:us-east-1:078432969830:certificate/687b349d-2931-4d5d-a152-577c3237ecd5 is in dbp-dev account / us-east-1, with domain wildcards *.biblebrain.com, *.uploader.biblebrain.com, *.downloader.biblebrain.com
+
 inputs = {
   environment = "newdata"
   vpc_id = dependency.vpc.outputs.vpc_id
@@ -36,11 +39,12 @@ inputs = {
   ecs_security_group = dependency.vpc.outputs.vpc_default_security_group_id
   lambda_subnets = dependency.vpc.outputs.private_subnet_ids
   lambda_security_group = dependency.vpc.outputs.vpc_default_security_group_id
+  logs_retention_in_days = 90  
   database_host = dependency.rds.outputs.endpoint
   database_db_name = "dbp_NEWDATA"
   database_user = "etl"
-  acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/6d4e6f6b-85b2-49f6-9064-50b16176e8b5"
-  alias = "etl.dev.dbt.io"
+  acm_certificate_arn = "arn:aws:acm:us-east-1:078432969830:certificate/687b349d-2931-4d5d-a152-577c3237ecd5"
+  alias = "uploader.biblebrain.com"
   s3_bucket = "dbp-prod"
   s3_vid_bucket = "dbp-vid"
   s3_artifacts_bucket = "dbp-etl-artifacts"  
