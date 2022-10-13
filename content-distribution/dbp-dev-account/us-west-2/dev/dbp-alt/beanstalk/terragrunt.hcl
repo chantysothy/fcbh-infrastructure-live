@@ -86,7 +86,7 @@ inputs = {
   healthcheck_url  = "/status"
   application_port = 80
 
-  solution_stack_name = "64bit Amazon Linux 2 v3.4.0 running PHP 8.1"
+  solution_stack_name = "64bit Amazon Linux 2 v3.5.0 running PHP 8.1"
   enable_stream_logs  = true
 
   // https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
