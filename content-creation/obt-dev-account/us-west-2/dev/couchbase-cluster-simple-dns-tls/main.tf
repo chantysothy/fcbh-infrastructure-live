@@ -25,11 +25,12 @@ module "couchbase" {
   source = "/Users/bradflood/git/terraform-aws-couchbase/modules/couchbase-cluster"
 
   cluster_name  = var.cluster_name
-  min_size      = 2
+  min_size      = 1
   max_size      = 3
   instance_type = "t4g.medium"
 
-  ami_id = var.ami_id
+  # ami_id = "ami-0f6b551afb57dd71e" 
+  ami_id = "ami-00b71c714ab2243cb" # created 10/12
   user_data = data.template_file.user_data_server.rendered
 
   vpc_id     = var.vpc_id
@@ -52,10 +53,9 @@ module "couchbase" {
     },
   ]
 
-  # allow ssh from obt-dev bastion. FIXME: externalize this if we move out of obt-dev
   allowed_ssh_cidr_blocks = ["172.10.0.0/16"]
 
-  ssh_key_name = var.ssh_key_name
+  ssh_key_name = "couchbase-render-dev"
 
   # To make it easy to test this example from your computer, we allow the Couchbase servers to have public IPs. In a
   # production deployment, you'll probably want to keep all the servers in private subnets with only private IPs.
@@ -115,8 +115,8 @@ module "load_balancer" {
   source = "/Users/bradflood/git/terraform-aws-couchbase/modules/load-balancer"
 
   name       = var.cluster_name
-  vpc_id     = var.vpc_id
-  subnet_ids = var.subnet_ids
+  vpc_id     = "vpc-06986eb07fb0e9130"
+  subnet_ids = ["subnet-0b7cf87442034129f", "subnet-03c3494226c645d52"]
 
   # In this example, we only listen for HTTPS requests on the load balancer
 

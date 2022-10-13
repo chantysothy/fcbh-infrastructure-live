@@ -55,7 +55,11 @@ variable "ssh_key_name" {
   type        = string
   default     = "couchbase-render-dev"
 }
-
+# variable "allowed_ssh_cidr_blocks" {
+#   description = "CIDR block from which ssh to the cluster ec2 instances is enabled"
+#   type        = string
+#   default     = null
+# }
 variable "data_volume_device_name" {
   description = "The device name to use for the EBS Volume used for the data directory on Couchbase nodes."
   type        = string
